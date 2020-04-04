@@ -5,7 +5,7 @@ import profileImg from '../../assests/img/profile-img.png';
 
 const SideBar = () => {
     return (
-        <div className="side-bar">
+        <div className="side-bar col-md-3">
             <div className="side-bar__top">
                 <img src={profileImg} alt="profile" className="side-bar__img" />
             </div>

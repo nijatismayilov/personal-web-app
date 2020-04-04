@@ -1,17 +1,15 @@
 .side-bar {
     display: flex;
     flex-direction: column;
-    width: 35rem;
-    height: 100vh;
     font-family: $font;
-    font-size: 2.8rem;
+    font-size: 2.5rem;
     font-weight: 400;
     background-color: $color-bg-light;
 
     &__top {
         display: flex;
         @include posCenter;
-        border-bottom: .3rem solid $color-border;
+        border-bottom: .2rem solid $color-border;
         padding: 2rem 0;
     }
 
@@ -26,6 +24,7 @@
         align-items: center;
         justify-content: flex-start;
         padding-top: 2.75rem;
+        padding-bottom: 5rem;
     }
 
     &__link {
@@ -34,9 +33,12 @@
         text-decoration: none;
         color: $color-white;
         max-width: 80%;
-        
-        &:not(:last-of-type) {
-            margin-bottom: 3.75rem;
+        transition: all 400ms;
+        padding: 1.5rem 2rem;
+
+        &:hover {
+            background-color: $color-link-dark;
+            color: $color-text;
         }
     }
 }
