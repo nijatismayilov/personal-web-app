@@ -5,6 +5,7 @@ import About from '../../components/about/about.component';
 import SitesAndNewspapers from '../../components/sites-and-newspapers/sites-and-newspapers.component';
 import Television from '../../components/television/television.component';
 import ScientificWork from '../../components/scientific-work/scientific-work.component';
+import SignIn from '../../components/sign-in/sign-in.component';
 
 const HomePage = () => {
     return (
@@ -14,6 +15,7 @@ const HomePage = () => {
             <Route path="/sites" component={SitesAndNewspapers} />
             <Route path="/tv" component={Television} />
             <Route path="/scientific" component={ScientificWork} />
+            <Route path="/signin" component={SignIn} />
         </div>
     )
 }
