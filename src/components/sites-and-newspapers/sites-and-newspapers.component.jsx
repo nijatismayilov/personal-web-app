@@ -1,79 +1,31 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import { selectSitesInterviews, selectNewspapersInterviews } from '../../redux/interviews/interviews.selectors';
 
 import InterviewItem from '../interview-item/interview-item.component';
 
-class SitesAndNewspapers extends React.Component {
-    constructor() {
-        super();
+const SitesAndNewspapers = ({ sites, newspapers }) => {
+    return (
+      <div className="sites-and-newspapers main u-align-items-center">
+        <h1 className="heading-primary">saytlarda və qəzetlərdə çıxışlarım</h1>
 
-        this.state = {
-            sites: [
-                {
-                    id: 1,
-                    title: 'pharetra massa massa ultricies mi quis hendrerit',
-                    website: 'test.com',
-                    date: 2005
-                },
-                {
-                    id: 2,
-                    title: 'nunc scelerisque viverra mauris in aliquam sem fringillat',
-                    website: 'test.com',
-                    date: 2005
-                },
-                {
-                    id: 3,
-                    title: 'eget arcu dictum varius',
-                    website: 'test.com',
-                    date: 2005
-                }
-            ],
-            newspapers: [
-                {
-                    id: 1,
-                    title: 'pharetra massa massa ultricies mi quis hendrerit',
-                    website: 'test.com',
-                    date: 2005
-                },
-                {
-                    id: 2,
-                    title: 'nunc scelerisque viverra mauris in aliquam sem fringillat',
-                    website: 'test.com',
-                    date: 2005
-                },
-                {
-                    id: 3,
-                    title: 'eget arcu dictum varius',
-                    website: 'test.com',
-                    date: 2005
-                }
-            ]
-        }
-    }
-
-
-    render() {
-        const { sites, newspapers } = this.state;
-        return (
-            <div className="sites-and-newspapers main u-align-items-center">
-                <h1 className="heading-primary">
-                    saytlarda və qəzetlərdə çıxışlarım
-                </h1>
-
-                <div className="sites-and-newspapers__content col-md-10">
-                    {
-                        sites.map(({ id, ...otherInterviewProps }) =>
-                            <InterviewItem key={id} {...otherInterviewProps} />
-                        )
-                    }
-                    {
-                        newspapers.map(({ id, ...otherInterviewProps }) => 
-                            <InterviewItem key={id} {...otherInterviewProps} />
-                        )
-                    }
-                </div>
-            </div>
-        )
-    }
+        <div className="sites-and-newspapers__content col-md-10">
+          {sites.map(({ id, ...otherInterviewProps }) => (
+            <InterviewItem key={id} {...otherInterviewProps} />
+          ))}
+          {newspapers.map(({ id, ...otherInterviewProps }) => (
+            <InterviewItem key={id} {...otherInterviewProps} />
+          ))}
+        </div>
+      </div>
+    );
 }
 
-export default SitesAndNewspapers;
+const mapStateToProps = createStructuredSelector({
+    sites: selectSitesInterviews,
+    newspapers: selectNewspapersInterviews
+})
+
+export default connect(mapStateToProps)(SitesAndNewspapers);
