@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import { auth } from '../../firebase/firebae.utils'; 
+import { selectCurrentUser, selectUserIsAdmin } from '../../redux/user/user.selectors';
 
 import profileImg from '../../assests/img/profile-img.png';
 
-const SideBar = () => {
+const SideBar = ({ currentUser, isAdmin }) => {
     return (
       <div className="side-bar col-md-3">
         <div className="side-bar__top">
@@ -23,12 +28,25 @@ const SideBar = () => {
           <Link to="/scientific" className="side-bar__link">
             elmi fəaliyyətim
           </Link>
-          <Link to="/signin" className="side-bar__link">
-            giriş
-          </Link>
+          {
+            currentUser
+              ? <div className="side-bar__link" onClick={() => auth.signOut()}>Çıxış</div>
+              : (<Link to="/signin" className="side-bar__link">Giriş</Link>)
+          }
+
+          {
+            isAdmin
+              ? (<Link to="/admin" className="side-bar__link">Admin</Link>)
+              : null
+          }
         </div>
       </div>
     );
 }
 
-export default SideBar;
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  isAdmin: selectUserIsAdmin
+})
+
+export default connect(mapStateToProps)(SideBar);

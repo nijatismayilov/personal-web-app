@@ -32,13 +32,13 @@ class SignIn extends React.Component {
     handleChange = event => {
       const { name, value } = event.target;
 
-      this.setState({ [name]: value }, () => console.log(this.state[name]));
+      this.setState({ [name]: value });
     }
 
     render() {
         const { email, password } = this.state;
         return (
-          <section className="sign-in main">
+          <section className="sign-in-section main">
             <form className="sign-in" onSubmit={this.handleSubmit}>
               <input
                 type="text"
@@ -62,7 +62,7 @@ class SignIn extends React.Component {
                 type="submit"
                 name="submit"
                 value="Sign In"
-                className="sign-in__input"
+                className="sign-in__btn"
               />
             </form>
           </section>
