@@ -23,3 +23,11 @@
 
     padding-top: 20rem;
 }
+
+.admin-panel {
+    &__content {
+        .row {
+            justify-content: center;
+        }
+    }
+}
