@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCurrentUser, selectUserIsAdmin } from '../../redux/user/user.selectors';
 
 import About from '../../components/about/about.component';
 import SitesAndNewspapers from '../../components/sites-and-newspapers/sites-and-newspapers.component';
@@ -12,8 +12,7 @@ import ScientificWork from '../../components/scientific-work/scientific-work.com
 import SignIn from '../../components/sign-in/sign-in.component';
 import AdminPanel from '../../components/admin-panel/admin-panel.component';
 
-const HomePage = ({ currentUser }) => {
-    console.log(currentUser);
+const HomePage = ({ currentUser, isAdmin }) => {
     return (
         <div className="homepage col-md-9">
             <Route exact path="/" component={About} />
@@ -22,13 +21,14 @@ const HomePage = ({ currentUser }) => {
             <Route path="/tv" component={Television} />
             <Route path="/scientific" component={ScientificWork} />
             <Route path="/signin" render={() => currentUser ? <Redirect to="/" /> : <SignIn />} />
-            <Route path="/admin" component={AdminPanel} />
+            <Route path="/admin" render={() => isAdmin ? <AdminPanel /> : <Redirect to="/" />} />
         </div>
     )
 }
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser
+    currentUser: selectCurrentUser,
+    isAdmin: selectUserIsAdmin
 })
 
 export default connect(mapStateToProps)(HomePage);
