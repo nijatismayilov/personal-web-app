@@ -1,0 +1,41 @@
+.admin-panel-control {
+    height: 9rem;
+    padding: 0 .5rem;
+    background-color: transparent;
+    border: none;
+
+    &:last-of-type {
+        padding-right: 0;
+    }
+
+    &:first-of-type {
+        padding-left: 0;
+    }
+
+    &__content {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-white;
+        text-align: center;
+        text-transform: capitalize;
+        font-family: $font;
+        font-size: 2rem;
+        font-weight: 400;
+        padding: .5rem 1rem;
+        border: .1rem solid rgba($color-text-dark, .25);
+        background-color: rgba($color-bg-dark, 1);
+        transition: all 250ms ease-out;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba($color-black, .4);
+        }
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AboutItem = ({ date, content }) => {
+const AboutItem = ({ date, title }) => {
     return (
         <div className="about-item">
             <div className="about-item__left">
@@ -13,7 +13,7 @@ const AboutItem = ({ date, content }) => {
             <div className="about-item__right">
                 <span />
                 <p className="about-item__content">
-                    { content }
+                    { title }
                 </p>
             </div>
         </div>

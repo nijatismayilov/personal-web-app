@@ -1,18 +1,33 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import './styles/main.scss';
+
 import {
   auth,
   createUserProfileDocument
 } from './firebase/firebae.utils';
 import { setCurrentUser } from './redux/user/user.actions';
 
+import WithSpinner from './components/with-spinner/with-spinner.component';
+
 import HomePage from './pages/homepage/homepage.component';
 import SideBar from './components/side-bar/side-bar.component';
 
-import './styles/main.scss';
+const AppBody = () => (
+  <div className = "row">
+    <SideBar />
+    <HomePage />
+  </div>
+)
+
+const AppWithSpinner = WithSpinner(AppBody)
 
 class App extends React.Component {
+  state = {
+    isLoading: true
+  }
+
   unsbscribeFromAuth = null;
 
   componentDidMount() {
@@ -31,6 +46,8 @@ class App extends React.Component {
       } else {
         setCurrentUser(userAuth);
       }
+
+      this.setState({ isLoading: false });
     })
 
 
@@ -41,12 +58,10 @@ class App extends React.Component {
   }
 
   render() {
+    const { isLoading } = this.state;
     return (
       <div className="app">
-        <div className="row">
-          <SideBar />
-          <HomePage />
-        </div>
+        <AppWithSpinner isLoading={isLoading} />
       </div>
     );
   }

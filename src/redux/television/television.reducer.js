@@ -1,7 +1,7 @@
 import { tvApperances } from './television.data';
 
 const INITIAL_STATE = {
-    tvApperances: tvApperances
+    television: tvApperances
 }
 
 const televisionReducer = (state = INITIAL_STATE, action) => {

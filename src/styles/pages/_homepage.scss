@@ -25,9 +25,34 @@
 }
 
 .admin-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     &__content {
-        .row {
-            justify-content: center;
-        }
+        display: flex;
+        flex-direction: column;
+        max-width: 90%;
+        width: 90%;
+    }
+
+    &__items {
+        border: .1rem solid rgba($color-text-dark, .25);
+    }
+
+    &__items-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }
+
+    &__items-container-top {
+        width: 80%;
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 2rem;
     }
 }

@@ -4,5 +4,5 @@ const selectTelevision = state => state.television;
 
 export const selectTelevisionApperances = createSelector(
     [selectTelevision],
-    television => television.tvApperances
+    television => television.television
 );
