@@ -42,6 +42,23 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     return userRef;
 }
 
+export const convertAboutsSnaphot = (abouts) => {
+    const transformedAboutsCollection = abouts.docs.map(doc => {
+        const { title, date } = doc.data();
+        const { id } = doc;
+
+        const dateNew = date.split('-')[0];
+
+        return {
+            id,
+            title,
+            date: dateNew
+        }
+    })
+
+    return transformedAboutsCollection;
+}
+
 export const createItemDocument = async (collection, item) => {
     const collectionRef = firestore.collection(collection);
 

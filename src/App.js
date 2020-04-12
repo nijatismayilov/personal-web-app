@@ -15,7 +15,7 @@ import HomePage from './pages/homepage/homepage.component';
 import SideBar from './components/side-bar/side-bar.component';
 
 const AppBody = () => (
-  <div className = "row">
+  <div className="row">
     <SideBar />
     <HomePage />
   </div>
