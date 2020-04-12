@@ -42,4 +42,11 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     return userRef;
 }
 
+export const createItemDocument = async (collection, item) => {
+    const collectionRef = firestore.collection(collection);
+
+    const newDocRef = collectionRef.doc();
+    return await newDocRef.set(item);
+}
+
 export default firebase;

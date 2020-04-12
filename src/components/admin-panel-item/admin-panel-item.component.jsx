@@ -1,8 +1,6 @@
 import React from 'react';
 
-import AdminPanelBtn from '../admin-panel-btn/admin-panel-btn.component';
-
-const AdminPanelItem = ({ title }) => {
+const AdminPanelItem = ({ id, title }) => {
     return (
         <div className="admin-panel-item">
             <h3 className="admin-panel-item__title">
@@ -10,8 +8,13 @@ const AdminPanelItem = ({ title }) => {
             </h3>
 
             <div className="admin-panel-item__btns">
-                <AdminPanelBtn title={'yenilə'} />
-                <AdminPanelBtn title={'sil'} />
+                <button className="admin-panel-item__btn">
+                    yenilə
+                </button>
+
+                <button className="admin-panel-item__btn">
+                    sil
+                </button>
             </div>
         </div>
     )
