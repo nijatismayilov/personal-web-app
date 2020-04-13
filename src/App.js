@@ -7,7 +7,10 @@ import {
   auth,
   createUserProfileDocument
 } from './firebase/firebae.utils';
+
 import { setCurrentUser } from './redux/user/user.actions';
+import { fetchAboutsStart } from './redux/about/about.actions';
+import { fetchInterviewsStart } from './redux/interviews/interviews.actions';
 
 import WithSpinner from './components/with-spinner/with-spinner.component';
 
@@ -30,28 +33,33 @@ class App extends React.Component {
 
   unsbscribeFromAuth = null;
 
-  componentDidMount() {
-    const { setCurrentUser } = this.props;
+    componentDidMount() {
+        const {
+            setCurrentUser,
+            fetchAboutsStart,
+            fetchInterviewsStart
+        } = this.props;
 
-    this.unsbscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-      if (userAuth) {
-        const userRef = createUserProfileDocument(userAuth);
+        this.unsbscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+        if (userAuth) {
+            const userRef = createUserProfileDocument(userAuth);
 
-        (await userRef).onSnapshot(snapShot => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data()
-          });
-        });
-      } else {
-        setCurrentUser(userAuth);
-      }
+            (await userRef).onSnapshot(snapShot => {
+            setCurrentUser({
+                id: snapShot.id,
+                ...snapShot.data()
+            });
+            });
+        } else {
+            setCurrentUser(userAuth);
+        }
 
-      this.setState({ isLoading: false });
-    })
+        this.setState({ isLoading: false });
+        })
 
-
-  }
+        fetchAboutsStart();
+        fetchInterviewsStart();
+    }
 
   componentWillUnmount() {
     this.unsbscribeFromAuth();
@@ -68,7 +76,9 @@ class App extends React.Component {
 }
 
 const mapDispathToProps = dispatch => ({
-  setCurrentUser: user => dispatch(setCurrentUser(user))
+  setCurrentUser: user => dispatch(setCurrentUser(user)),
+  fetchAboutsStart: () => dispatch(fetchAboutsStart()),
+  fetchInterviewsStart: () => dispatch(fetchInterviewsStart())
 })
 
 export default connect(null, mapDispathToProps)(App);

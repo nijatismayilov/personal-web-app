@@ -42,8 +42,8 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
     return userRef;
 }
 
-export const convertAboutsSnaphot = (abouts) => {
-    const transformedAboutsCollection = abouts.docs.map(doc => {
+export const convertAboutsSnaphot = (snapShot) => {
+    const transformedAboutsCollection = snapShot.docs.map(doc => {
         const { title, date } = doc.data();
         const { id } = doc;
 
@@ -57,6 +57,25 @@ export const convertAboutsSnaphot = (abouts) => {
     })
 
     return transformedAboutsCollection;
+}
+
+export const convertInterviewsSnaphot = (snapShot) => {
+    const transformedInterviewsCollection = snapShot.docs.map(doc => {
+        const { title, date, website } = doc.data();
+        const { id } = doc;
+
+        const dateNew = date.split('-')[0];
+        const websiteNew = website.split('/')[2];
+
+        return {
+            id,
+            title,
+            website: websiteNew,
+            date: dateNew
+        }
+    })
+
+    return transformedInterviewsCollection;
 }
 
 export const createItemDocument = async (collection, item) => {

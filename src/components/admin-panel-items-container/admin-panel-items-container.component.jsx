@@ -89,106 +89,106 @@ class AdminPanelItemsContainer extends React.Component {
             </div>
 
             {
-            keys.map(key => (
-                items[key]
-                    ? (
-                        items[key].map(({ id, title }) => (
-                            <AdminPanelItem key={id} title={title} id={id} />
-                        ))
-                    )
-                    : null
-                
-            ))
+                keys.map(key => (
+                    (items[key] instanceof Array)
+                        ? (
+                            items[key].map(({ id, title }) => (
+                                <AdminPanelItem key={id} title={title} id={id} />
+                            ))
+                        )
+                        : null
+                    
+                ))
             }
 
             {
-            modalWindow
-                ? (
-                <div className="modal-add-item">
-                    <form className="add-form" onSubmit={this.handleSubmit}>
-                        <input 
-                            type="text" 
-                            className="add-form__input" 
-                            name="title" 
-                            value={newPost.title} 
-                            onChange={this.handleChange}
-                            placeholder="Başlıq" 
-                        />
+                modalWindow
+                    ? (
+                    <div className="modal-add-item">
+                        <form className="add-form" onSubmit={this.handleSubmit}>
+                            <input 
+                                type="text" 
+                                className="add-form__input" 
+                                name="title" 
+                                value={newPost.title} 
+                                onChange={this.handleChange}
+                                placeholder="Başlıq" 
+                            />
 
-                        {
-                            keys[0] === 'television'
-                            ? (
-                                <input
-                                    type="text"
-                                    className="add-form__input"
-                                    name="text"
-                                    value={newPost.text}
-                                    onChange={this.handleChange}
-                                    placeholder="Mətn"
-                                />
-                            )
-                            : null
-                        }
-
-                        {
-                            keys[0] !== 'television'
-                            ? (
-                                <input
-                                    type="date"
-                                    className="add-form__input"
-                                    name="date"
-                                    value={newPost.date}
-                                    onChange={this.handleChange}
-                                    placeholder="Tarix"
-                                />
-                            )
-                            : null
-                        }
-
-                        {
-                            keys[0] === 'television'
+                            {
+                                keys[0] === 'television'
                                 ? (
                                     <input
-                                        type="url"
+                                        type="text"
                                         className="add-form__input"
-                                        name="url"
-                                        value={newPost.url}
+                                        name="text"
+                                        value={newPost.text}
                                         onChange={this.handleChange}
-                                        placeholder="Link"
+                                        placeholder="Mətn"
                                     />
                                 )
                                 : null
-                        }
+                            }
 
-                        {
-                            keys[0] === 'sites'
+                            {
+                                keys[0] !== 'television'
                                 ? (
                                     <input
-                                        type="url"
+                                        type="date"
                                         className="add-form__input"
-                                        name="website"
-                                        value={newPost.website}
+                                        name="date"
+                                        value={newPost.date}
                                         onChange={this.handleChange}
-                                        placeholder="Sayt"
+                                        placeholder="Tarix"
                                     />
                                 )
                                 : null
-                        }
+                            }
 
-                        <input
-                            type="submit"
-                            className="add-form__input add-form__input--submit"
-                            name="submit"
-                            value="Göndər"
-                        />
-                    </form>
+                            {
+                                keys[0] === 'television'
+                                    ? (
+                                        <input
+                                            type="url"
+                                            className="add-form__input"
+                                            name="url"
+                                            value={newPost.url}
+                                            onChange={this.handleChange}
+                                            placeholder="Link"
+                                        />
+                                    )
+                                    : null
+                            }
 
-                    <button className="admin-panel-item__btn" onClick={this.handleModalChange}>
-                    çıx
-                    </button>
-                </div>
-                )
-                : null
+                            {
+                                keys[0] === 'interviews'
+                                    ? (
+                                        <input
+                                            type="url"
+                                            className="add-form__input"
+                                            name="website"
+                                            value={newPost.website}
+                                            onChange={this.handleChange}
+                                            placeholder="Sayt"
+                                        />
+                                    )
+                                    : null
+                            }
+
+                            <input
+                                type="submit"
+                                className="add-form__input add-form__input--submit"
+                                name="submit"
+                                value="Göndər"
+                            />
+                        </form>
+
+                        <button className="admin-panel-item__btn" onClick={this.handleModalChange}>
+                        çıx
+                        </button>
+                    </div>
+                    )
+                    : null
             }
         </div>
         );

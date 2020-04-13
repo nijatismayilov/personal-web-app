@@ -1,4 +1,3 @@
-// import { abouts } from './about.data';
 import { AboutActionTypes } from './about.types';
 
 const INITIAL_STATE = {

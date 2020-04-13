@@ -1,4 +1,4 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put } from 'redux-saga/effects';
 
 import { firestore, convertAboutsSnaphot } from '../../firebase/firebae.utils';
 
@@ -11,6 +11,7 @@ export function* fetchAboutsAsync() {
         const collectionRef = firestore.collection('abouts');
         const snapShot = yield collectionRef.get();
         const abouts = yield call(convertAboutsSnaphot, snapShot)
+        
         yield put(fetchAboutsSuccess(abouts));
     } catch (error) {
         yield put(fetAboutsFailure(error.message));
@@ -18,7 +19,7 @@ export function* fetchAboutsAsync() {
 }
 
 export function* fetchAboutsStart() {
-    yield takeEvery(
+    yield takeLatest(
         AboutActionTypes.FETCH_ABOUTS_START,
         fetchAboutsAsync
     );

@@ -15,7 +15,7 @@ import AdminPanel from '../../components/admin-panel/admin-panel.component';
 const HomePage = ({ currentUser, isAdmin }) => {
     return (
         <div className="homepage col-md-9">
-            <Route exact path="/" component={About} />
+            <Route exact path="/" render={() => (<div>Ana Sehife</div>)} />
             <Route path="/about" component={About} />
             <Route path="/sites" component={SitesAndNewspapers} />
             <Route path="/tv" component={Television} />
