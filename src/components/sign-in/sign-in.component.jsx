@@ -27,7 +27,7 @@ class SignIn extends React.Component {
                 password: ""
             })
         } catch (error) {
-            console.log(error.message)
+            alert(error.message);
         }
     }
 
@@ -44,6 +44,13 @@ class SignIn extends React.Component {
         return (
             <section className="sign-in-section main">
                 <form className="sign-in" onSubmit={this.handleSubmit}>
+                    <h3 
+                        className={`heading-tertiary m-b-3 
+                        ${currentUser ? '' : 'visibility-hidden'}`}
+                    >
+                        Hesaba daxil olmusunuz!
+                    </h3>
+
                     <input
                         type="text"
                         value={email}
