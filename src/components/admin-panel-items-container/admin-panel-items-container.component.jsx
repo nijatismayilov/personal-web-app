@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { createItemDocument } from '../../firebase/firebae.utils';
 
 import { selectPartOfState, selectKeysOfPartOfState } from "../../redux/root-selector";
+import { fetchAboutsStart } from '../../redux/about/about.actions';
+import { fetchInterviewsStart } from '../../redux/interviews/interviews.actions';
+import { fetchTelevisionItemsStart } from '../../redux/television/television.actions';
 
 import AdminPanelItem from '../admin-panel-item/admin-panel-item.component';
 
@@ -53,7 +56,12 @@ class AdminPanelItemsContainer extends React.Component {
 
     handleSubmit = async (e) => {
         e.preventDefault();
-        const { keys } = this.props;
+        const { 
+            keys, 
+            fetchAboutsStart, 
+            fetchInterviewsStart, 
+            fetchTelevisionItemsStart 
+        } = this.props;
         const { newPost } = this.state;
         
         try {
@@ -71,6 +79,11 @@ class AdminPanelItemsContainer extends React.Component {
                 }
                 };
             });
+
+            if (keys[0] === 'abouts') fetchAboutsStart();
+            else if (keys[0] === 'interviews') fetchInterviewsStart();
+            else if (keys[0] === 'television') fetchTelevisionItemsStart();
+
         } catch(error) {
             alert(`Errored while sending: ${error.message}`);
         }
@@ -93,7 +106,7 @@ class AdminPanelItemsContainer extends React.Component {
                     (items[key] instanceof Array)
                         ? (
                             items[key].map(({ id, title }) => (
-                                <AdminPanelItem key={id} title={title} id={id} />
+                                <AdminPanelItem key={id} title={title} id={id} collection={keys[0]} />
                             ))
                         )
                         : null
@@ -184,7 +197,7 @@ class AdminPanelItemsContainer extends React.Component {
                         </form>
 
                         <button className="admin-panel-item__btn" onClick={this.handleModalChange}>
-                        çıx
+                            çıx
                         </button>
                     </div>
                     )
@@ -200,4 +213,10 @@ const mapStateToProps = (state, ownProps) => ({
   keys: selectKeysOfPartOfState(ownProps.match.params.containerID)(state)
 });
 
-export default connect(mapStateToProps)(AdminPanelItemsContainer);
+const mapDispatchToProps = dispatch => ({
+    fetchAboutsStart: () => dispatch(fetchAboutsStart()),
+    fetchInterviewsStart: () => dispatch(fetchInterviewsStart()),
+    fetchTelevisionItemsStart: () => dispatch(fetchTelevisionItemsStart())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPanelItemsContainer);

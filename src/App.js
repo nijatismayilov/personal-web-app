@@ -11,6 +11,7 @@ import {
 import { setCurrentUser } from './redux/user/user.actions';
 import { fetchAboutsStart } from './redux/about/about.actions';
 import { fetchInterviewsStart } from './redux/interviews/interviews.actions';
+import { fetchTelevisionItemsStart } from './redux/television/television.actions';
 
 import WithSpinner from './components/with-spinner/with-spinner.component';
 
@@ -37,7 +38,8 @@ class App extends React.Component {
         const {
             setCurrentUser,
             fetchAboutsStart,
-            fetchInterviewsStart
+            fetchInterviewsStart,
+            fetchTelevisionItemsStart
         } = this.props;
 
         this.unsbscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
@@ -59,6 +61,7 @@ class App extends React.Component {
 
         fetchAboutsStart();
         fetchInterviewsStart();
+        fetchTelevisionItemsStart();
     }
 
   componentWillUnmount() {
@@ -78,7 +81,8 @@ class App extends React.Component {
 const mapDispathToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
   fetchAboutsStart: () => dispatch(fetchAboutsStart()),
-  fetchInterviewsStart: () => dispatch(fetchInterviewsStart())
+  fetchInterviewsStart: () => dispatch(fetchInterviewsStart()),
+  fetchTelevisionItemsStart: () => dispatch(fetchTelevisionItemsStart())
 })
 
 export default connect(null, mapDispathToProps)(App);

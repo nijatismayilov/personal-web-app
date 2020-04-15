@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { auth } from '../../firebase/firebae.utils'; 
+// import { auth } from '../../firebase/firebae.utils'; 
 import { selectCurrentUser, selectUserIsAdmin } from '../../redux/user/user.selectors';
 
 import profileImg from '../../assests/img/profile-img.png';
@@ -31,7 +31,7 @@ const SideBar = ({ currentUser, isAdmin }) => {
                 <Link to="/scientific" className="side-bar__link">
                     elmi fəaliyyətim
                 </Link>
-                {
+                {/* {
                     currentUser
                         ? (
                             <div className="side-bar__link" onClick={() => auth.signOut()}>
@@ -39,7 +39,7 @@ const SideBar = ({ currentUser, isAdmin }) => {
                             </div>
                         )
                         : (<Link to="/signin" className="side-bar__link">Giriş</Link>)
-                }
+                } */}
 
                 {
                     isAdmin

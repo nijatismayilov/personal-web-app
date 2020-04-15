@@ -53,8 +53,8 @@ export const convertAboutsSnaphot = (snapShot) => {
             id,
             title,
             date: dateNew
-        }
-    })
+        };
+    });
 
     return transformedAboutsCollection;
 }
@@ -72,17 +72,39 @@ export const convertInterviewsSnaphot = (snapShot) => {
             title,
             website: websiteNew,
             date: dateNew
-        }
-    })
+        };
+    });
 
     return transformedInterviewsCollection;
 }
 
+export const convertTelevisionSnapshot = (snapShot) => {
+    const transformedTelevisionCollection = snapShot.docs.map(doc => {
+        const { text, title, url } = doc.data();
+        const { id } = doc;
+
+        return {
+            id,
+            text,
+            title,
+            url
+        };
+    });
+
+    return transformedTelevisionCollection;
+}
+
 export const createItemDocument = async (collection, item) => {
     const collectionRef = firestore.collection(collection);
-
     const newDocRef = collectionRef.doc();
     return await newDocRef.set(item);
+}
+
+export const deleteItemDocument = async (collection, id) => {
+    const collectionRef = firestore.collection(collection);
+    const docRef = collectionRef.doc(id);
+
+    return await docRef.delete();
 }
 
 export default firebase;

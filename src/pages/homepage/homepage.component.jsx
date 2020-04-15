@@ -15,12 +15,12 @@ import AdminPanel from '../../components/admin-panel/admin-panel.component';
 const HomePage = ({ currentUser, isAdmin }) => {
     return (
         <div className="homepage col-md-9">
-            <Route exact path="/" render={() => (<div>Ana Sehife</div>)} />
+            <Route exact path="/" component={About} />
             <Route path="/about" component={About} />
             <Route path="/sites" component={SitesAndNewspapers} />
             <Route path="/tv" component={Television} />
             <Route path="/scientific" component={ScientificWork} />
-            <Route path="/signin" render={() => currentUser ? <Redirect to="/" /> : <SignIn />} />
+            <Route path="/signin" render={() =>  <SignIn />} />
             <Route path="/admin" render={() => isAdmin ? <AdminPanel /> : <Redirect to="/" />} />
         </div>
     )
