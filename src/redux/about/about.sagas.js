@@ -10,7 +10,7 @@ export function* fetchAboutsAsync() {
     try {
         const collectionRef = firestore.collection('abouts');
         const snapShot = yield collectionRef.get();
-        const abouts = yield call(convertAboutsSnaphot, snapShot)
+        const abouts = yield call(convertAboutsSnaphot, snapShot);
         
         yield put(fetchAboutsSuccess(abouts));
     } catch (error) {

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 
+import './tv-item.styles.scss';
+
 const TvItem = ({ url, title, text }) => {
     return (
       <div className="col-md-4 p-x-1 p-y-1">

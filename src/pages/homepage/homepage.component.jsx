@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectCurrentUser, selectUserIsAdmin } from '../../redux/user/user.selectors';
+import { selectUserIsAdmin } from '../../redux/user/user.selectors';
 
 import About from '../../components/about/about.component';
 import SitesAndNewspapers from '../../components/sites-and-newspapers/sites-and-newspapers.component';
@@ -12,9 +12,9 @@ import ScientificWork from '../../components/scientific-work/scientific-work.com
 import SignIn from '../../components/sign-in/sign-in.component';
 import AdminPanel from '../../components/admin-panel/admin-panel.component';
 
-const HomePage = ({ currentUser, isAdmin }) => {
+const HomePage = ({ isAdmin }) => {
     return (
-        <div className="homepage col-md-9">
+        <div className="homepage">
             <Route exact path="/" component={About} />
             <Route path="/about" component={About} />
             <Route path="/sites" component={SitesAndNewspapers} />
@@ -27,7 +27,6 @@ const HomePage = ({ currentUser, isAdmin }) => {
 }
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
     isAdmin: selectUserIsAdmin
 })
 

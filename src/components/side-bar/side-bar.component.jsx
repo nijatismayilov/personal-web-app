@@ -3,16 +3,17 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-// import { auth } from '../../firebase/firebae.utils'; 
 import { selectCurrentUser, selectUserIsAdmin } from '../../redux/user/user.selectors';
 
 import profileImg from '../../assests/img/profile-img.png';
 
 const SideBar = ({ currentUser, isAdmin }) => {
     return (
-        <div className="side-bar col-md-3">
+        <div className="side-bar">
             <div className="side-bar__top">
-            <img src={profileImg} alt="profile" className="side-bar__img" />
+                <img src={profileImg} alt="profile" className="side-bar__img" />
+                <span className="side-bar__name">ilyas huseynov</span>
+                <div className="side-bar__occupation">akademik</div>
             </div>
 
             <div className="side-bar__bottom">
