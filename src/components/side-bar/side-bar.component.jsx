@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useSpring, animated } from 'react-spring';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
 import { selectUserIsAdmin } from '../../redux/user/user.selectors';
+import { selectIsSideBarActive } from '../../redux/sidebar/sidebar.selectors';
 
 import profileImg from '../../assests/img/profile-img.png';
 
@@ -18,10 +20,16 @@ const pages = [
   { text: "admin", link: '/admin', id: 5 }
 ]
 
-const SideBar = ({ isAdmin }) => {
-  const [activePage, setActivePage] = useState(0)
+
+const SideBar = ({ isSideBarActive, isAdmin }) => {
+  const [ activePage, setActivePage ] = useState(0)
+  const fadeInFromRight = useSpring({
+    opacity: isSideBarActive ? 1 : 0,
+    transform: isSideBarActive ? "translateX(0)" : "translateX(-100%)"
+  });
+
   return (
-    <div className="side-bar">
+    <animated.div className="side-bar" style={fadeInFromRight}>
       <div className="side-bar__top">
         <img src={profileImg} alt="profile" className="side-bar__img" />
           <span className="side-bar__name">ilyas huseynov</span>
@@ -58,12 +66,13 @@ const SideBar = ({ isAdmin }) => {
           })
         }
       </div>
-    </div>
-  );
+    </animated.div>
+  )
 }
 
 const mapStateToProps = createStructuredSelector({
-  isAdmin: selectUserIsAdmin
+  isAdmin: selectUserIsAdmin,
+  isSideBarActive: selectIsSideBarActive
 })
 
 export default connect(mapStateToProps)(SideBar);

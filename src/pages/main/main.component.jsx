@@ -5,6 +5,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectUserIsAdmin } from '../../redux/user/user.selectors';
 
+import BurgerBtn from '../../components/burger-btn/burger-btn.component';
 import Home from '../home/home.component';
 import About from '../about/about.component';
 import SitesAndNewspapers from '../sites-and-newspapers/sites-and-newspapers.component';
@@ -16,21 +17,22 @@ import AdminPanel from '../admin-panel/admin-panel.component';
 import './main.styles.scss';
 
 const Main = ({ isAdmin }) => {
-    return (
-        <div className="main-component">
-            <Route exact path="/" component={Home} />
-            <Route path="/about" component={About} />
-            <Route path="/sites" component={SitesAndNewspapers} />
-            <Route path="/tv" component={Television} />
-            <Route path="/scientific" component={ScientificWork} />
-            <Route path="/signin" render={() =>  <SignIn />} />
-            <Route path="/admin" render={() => isAdmin ? <AdminPanel /> : <Redirect to="/" />} />
-        </div>
-    )
+  return (
+    <div className="main-component">
+      <BurgerBtn />
+      <Route exact path="/" component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/sites" component={SitesAndNewspapers} />
+      <Route path="/tv" component={Television} />
+      <Route path="/scientific" component={ScientificWork} />
+      <Route path="/signin" render={() =>  <SignIn />} />
+      <Route path="/admin" render={() => isAdmin ? <AdminPanel /> : <Redirect to="/" />} />
+    </div>
+  )
 }
 
 const mapStateToProps = createStructuredSelector({
-    isAdmin: selectUserIsAdmin
+  isAdmin: selectUserIsAdmin
 })
 
 export default connect(mapStateToProps)(Main);

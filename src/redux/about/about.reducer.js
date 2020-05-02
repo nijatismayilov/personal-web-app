@@ -1,9 +1,9 @@
 import { AboutActionTypes } from './about.types';
 
 const INITIAL_STATE = {
-    abouts: null,
-    isFetching: false,
-    errorMessage: undefined
+  abouts: null,
+  isFetching: false,
+  errorMessage: undefined
 }
 
 const aboutReducer = (state = INITIAL_STATE, action) => {

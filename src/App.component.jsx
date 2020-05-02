@@ -12,6 +12,7 @@ import { setCurrentUser } from './redux/user/user.actions';
 import { fetchAboutsStart } from './redux/about/about.actions';
 import { fetchInterviewsStart } from './redux/interviews/interviews.actions';
 import { fetchTelevisionItemsStart } from './redux/television/television.actions';
+import { setSideBarIsActive } from './redux/sidebar/sidebar.actions';
 
 import WithSpinner from './components/with-spinner/with-spinner.component';
 
@@ -36,35 +37,53 @@ class App extends React.Component {
 
   unsbscribeFromAuth = null;
 
-    componentDidMount() {
-        const {
-            setCurrentUser,
-            fetchAboutsStart,
-            fetchInterviewsStart,
-            fetchTelevisionItemsStart
-        } = this.props;
+  checkScreenWidth = () => {
+    const { setSideBarIsActive } = this.props;
 
-        this.unsbscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
-        if (userAuth) {
-            const userRef = createUserProfileDocument(userAuth);
+    if (window.innerWidth <= 768) setSideBarIsActive(false);
+    else setSideBarIsActive(true);
+  }
 
-            (await userRef).onSnapshot(snapShot => {
-            setCurrentUser({
-                id: snapShot.id,
-                ...snapShot.data()
-            });
-            });
-        } else {
-            setCurrentUser(userAuth);
-        }
+  componentDidMount() {
+    this.checkScreenWidth();
 
-        this.setState({ isLoading: false });
-        })
+    const {
+      setSideBarIsActive,
+      setCurrentUser,
+      fetchAboutsStart,
+      fetchInterviewsStart,
+      fetchTelevisionItemsStart
+    } = this.props;
 
-        fetchAboutsStart();
-        fetchInterviewsStart();
-        fetchTelevisionItemsStart();
-    }
+    this.unsbscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      if (userAuth) {
+        const userRef = createUserProfileDocument(userAuth);
+
+        (await userRef).onSnapshot(snapShot => {
+          setCurrentUser({
+            id: snapShot.id,
+            ...snapShot.data()
+          });
+        });
+      } else {
+        setCurrentUser(userAuth);
+      }
+
+      this.setState({ isLoading: false });
+    })
+
+    window.addEventListener('resize', () => {
+      let status = false;
+      if (window.innerWidth <= 768) status = false;
+      else status = true;
+
+      setSideBarIsActive(status);
+    })
+
+    fetchAboutsStart();
+    fetchInterviewsStart();
+    fetchTelevisionItemsStart();      
+  }
 
   componentWillUnmount() {
     this.unsbscribeFromAuth();
@@ -84,7 +103,8 @@ const mapDispathToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
   fetchAboutsStart: () => dispatch(fetchAboutsStart()),
   fetchInterviewsStart: () => dispatch(fetchInterviewsStart()),
-  fetchTelevisionItemsStart: () => dispatch(fetchTelevisionItemsStart())
+  fetchTelevisionItemsStart: () => dispatch(fetchTelevisionItemsStart()),
+  setSideBarIsActive: status => dispatch(setSideBarIsActive(status))
 })
 
 export default connect(null, mapDispathToProps)(App);

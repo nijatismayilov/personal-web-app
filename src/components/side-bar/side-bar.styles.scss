@@ -100,7 +100,11 @@
     left: 0;
     z-index: 1000;
     height: 100%;
-    width: 0;
+    width: 65vw;
     overflow: hidden;
+
+    &__img {
+      width: 20%;
+    }
   }
 }
