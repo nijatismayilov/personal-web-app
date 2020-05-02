@@ -1,0 +1,34 @@
+@import '../../styles/main.scss';
+
+.homepage {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to right, rgba($color-bg-light, .97), rgba($color-white, .97)),
+    url('../../assests/img/home-background.jpg');
+  background-size: cover;
+
+  &-title {
+    width: 100%;
+    text-align: left;
+    text-transform: capitalize;
+    padding-left: 5rem;
+    padding-bottom: 15rem;
+    font-family: $font;
+    font-size: 4.5rem;
+    font-weight: 900;
+    color: rgba($color-text-dark, .8);
+    position: relative;
+
+    &::after {
+      content: '';
+      width: 60%;
+      height: .3rem;
+      background-color: rgba($color-text, .5);
+      position: absolute;
+      bottom: 12.5rem;
+      left: 5rem;
+    }
+  }
+}

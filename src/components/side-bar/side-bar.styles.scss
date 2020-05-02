@@ -1,101 +1,106 @@
 @import '../../styles/main.scss';
 
 .side-bar {
-    width: 20%;
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  font-family: $font;
+  font-weight: 500;
+  background-color: $color-bg-light;
+
+  &__top {
     display: flex;
     flex-direction: column;
-    font-family: $font;
-    font-weight: 500;
-    background-color: $color-bg-light;
+    @include posCenter;
+    padding: 4rem 0 1rem;
+  }
 
-    &__top {
-        display: flex;
-        flex-direction: column;
-        @include posCenter;
-        padding: 4rem 0 1rem;
+  &__img {
+    width: 60%;
+    object-fit: contain;
+    margin-bottom: 2rem;
+  }
+
+  &__name {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+
+  &__occupation {
+    font-size: 1.5rem;
+    text-transform: capitalize;
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 3rem;
+    padding-bottom: 5rem;
+  }
+
+  &__link {
+    width: 100%;
+    text-transform: uppercase;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.75rem;
+    color: $color-text-light;
+    max-width: 80%;
+    transition: all 400ms;
+    padding: .5rem .5rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 400ms ease-in;
+    border: .1rem solid transparent;
+    border-radius: .5rem;
+
+    &::after {
+      content: '';
+      height: .1rem;
+      width: 0;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: $color-text;
+      transition: all 400ms cubic-bezier(.3, .74, .63, .99);
     }
 
-    &__img {
+    &:not(:last-of-type) {
+      margin-bottom: 1.5rem;
+    }
+
+    &:hover {
+      color: $color-text-dark;
+
+      &::after {
         width: 60%;
-        object-fit: contain;
-        margin-bottom: 2rem;
+      }
     }
 
-    &__name {
-        font-size: 2rem;
-        font-weight: 700;
-        text-transform: capitalize;
+    &-active {
+      color: $color-text;
+      border-color: rgba($color-text, .1);
+      box-shadow: 0 .5rem .3rem rgba($color-black, .1);
+
+      &::after {
+        width: 95%;
+      }
     }
-
-    &__occupation {
-        font-size: 1.5rem;
-        text-transform: capitalize;
-    }
-
-    &__bottom {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding-top: 3rem;
-        padding-bottom: 5rem;
-    }
-
-    &__link {
-        text-transform: uppercase;
-        text-align: center;
-        text-decoration: none;
-        font-size: 1.5rem;
-        color: $color-text-light;
-        max-width: 80%;
-        transition: all 400ms;
-        padding: .5rem 0;
-        cursor: pointer;
-        position: relative;
-        transition: all 400ms ease-in;
-
-        &::after {
-            content: '';
-            height: .1rem;
-            width: 0;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: $color-text;
-            transition: all 400ms cubic-bezier(.3, .74, .63, .99);
-        }
-
-        &:not(:last-of-type) {
-            margin-bottom: 1.5rem;
-        }
-
-        &:hover {
-            color: $color-text-dark;
-
-            &::after {
-                width: 60%;
-            }
-        }
-
-        &:focus {
-            color: $color-text;
-
-            &::after {
-                width: 70%;
-            }
-        }
-    }
+  }
 }
 
 @media (max-width: 768px) {
-    .side-bar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: 1000;
-        height: 100%;
-        width: 0;
-        overflow: hidden;
-    }
+  .side-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100%;
+    width: 0;
+    overflow: hidden;
+  }
 }

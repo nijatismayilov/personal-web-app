@@ -1,51 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectCurrentUser, selectUserIsAdmin } from '../../redux/user/user.selectors';
+import { selectUserIsAdmin } from '../../redux/user/user.selectors';
 
 import profileImg from '../../assests/img/profile-img.png';
 
 import './side-bar.styles.scss';
 
-const SideBar = ({ currentUser, isAdmin }) => {
-    return (
-        <div className="side-bar">
-            <div className="side-bar__top">
-                <img src={profileImg} alt="profile" className="side-bar__img" />
-                <span className="side-bar__name">ilyas huseynov</span>
-                <div className="side-bar__occupation">akademik</div>
-            </div>
+const pages = [
+  { text: "ana səhifə", link: '/', id: 0 },
+  { text: "haqqımda", link: '/about', id: 1 },
+  { text: "saytlarda və qəzetlərdə çıxışlarım", link: '/sites', id: 2 },
+  { text: "televiziyada çıxışlarım", link: '/tv', id: 3 },
+  { text: "elmi fəaliyyətim", link: '/scientific', id: 4 },
+  { text: "admin", link: '/admin', id: 5 }
+]
 
-            <div className="side-bar__bottom">
-                <Link to="/" className="side-bar__link">
-                    ana səhifə
+const SideBar = ({ isAdmin }) => {
+  const [activePage, setActivePage] = useState(0)
+  return (
+    <div className="side-bar">
+      <div className="side-bar__top">
+        <img src={profileImg} alt="profile" className="side-bar__img" />
+          <span className="side-bar__name">ilyas huseynov</span>
+          <div className="side-bar__occupation">akademik</div>
+      </div>
+
+      <div className="side-bar__bottom">
+        {
+          pages.map(page => {
+            if (page.id !== 5) {
+              return (
+                <Link 
+                  to={page.link} 
+                  className={`side-bar__link ${page.id === activePage ? 'side-bar__link-active' : ''}`}
+                  key={page.id}
+                  onClick={() => setActivePage(page.id)}>
+                  { page.text }
                 </Link>
-                <Link to="/about" className="side-bar__link">
-                    haqqımda
-                </Link>
-                <Link to="/sites" className="side-bar__link">
-                    saytlarda və qəzetlərdə çıxışlarım
-                </Link>
-                <Link to="/tv" className="side-bar__link">
-                    televiziyada çıxışlarım
-                </Link>
-                <Link to="/scientific" className="side-bar__link">
-                    elmi fəaliyyətim
-                </Link>
-                {
-                    isAdmin
-                        ? (<Link to="/admin" className="side-bar__link">Admin</Link>)
-                        : null
-                }
-            </div>
-        </div>
-    );
+              )
+            } else {
+              if (!isAdmin) return null
+              else {
+                return (
+                  <Link 
+                    to={page.link} 
+                    className={`side-bar__link ${page.id === activePage ? 'side-bar__link-active' : ''}`}
+                    key={page.id}
+                    onClick={() => setActivePage(page.id)}>
+                    { page.text }
+                  </Link>
+                )
+              }
+            }
+          })
+        }
+      </div>
+    </div>
+  );
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
   isAdmin: selectUserIsAdmin
 })
 

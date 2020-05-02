@@ -18,7 +18,11 @@ const Home = () => {
     });
 
     return (
-        <animated.div style={fade}>Home Page</animated.div>
+        <animated.div className="homepage" style={fade}>
+          <h1 className="homepage-title">
+            Ilyas huseynovun <br /> şəxsi saytına xoş gəlmisiniz!
+          </h1>  
+        </animated.div>
     );
 };
 

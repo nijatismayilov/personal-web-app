@@ -1,32 +1,62 @@
 @font-face {
-    font-family: ArialMT;
-    font-weight: 400;
-    src: url('../../assests/fonts/ARI.ttf');
+  font-family: Playfair_Display;
+  font-weight: 400;
+  src: url('../../assests/fonts/PlayfairDisplay-Regular.ttf');
+}
+
+@font-face {
+  font-family: Playfair_Display;
+  font-weight: 500;
+  src: url('../../assests/fonts/PlayfairDisplay-Medium.ttf');
+}
+
+@font-face {
+  font-family: Playfair_Display;
+  font-weight: 600;
+  src: url('../../assests/fonts/PlayfairDisplay-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: Playfair_Display;
+  font-weight: 700;
+  src: url('../../assests/fonts/PlayfairDisplay-Bold.ttf');
+}
+
+@font-face {
+  font-family: Playfair_Display;
+  font-weight: 800;
+  src: url('../../assests/fonts/PlayfairDisplay-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: Playfair_Display;
+  font-weight: 900;
+  src: url('../../assests/fonts/PlayfairDisplay-Black.ttf');
 }
 
 .heading-primary {
-    text-transform: uppercase;
-    ;
-    color: $color-black;
-    font-family: $font;
-    font-size: 3rem;
-    font-weight: 400;
-    text-align: center;
-    margin-bottom: 2.5rem;
+  text-transform: uppercase;
+  ;
+  color: $color-black;
+  font-family: $font;
+  font-size: 3rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 2.5rem;
 }
 
 .heading-secondary {
-    text-transform: capitalize;
-    color: $color-text-dark;
-    font-family: $font;
-    font-size: 2.2rem;
-    font-weight: 400;
-    text-align: left;
+  text-transform: capitalize;
+  color: $color-text-dark;
+  font-family: $font;
+  font-size: 2.2rem;
+  font-weight: 400;
+  text-align: left;
 }
 
 .heading-tertiary {
-    color: $color-white;
-    font-family: $font;
-    font-size: 1.8rem;
-    font-weight: 400;
+  color: $color-white;
+  font-family: $font;
+  font-size: 1.8rem;
+  font-weight: 400;
 }
