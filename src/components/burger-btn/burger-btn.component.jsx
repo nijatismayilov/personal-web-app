@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -9,17 +9,15 @@ import { selectIsSideBarActive } from '../../redux/sidebar/sidebar.selectors';
 import './burger-btn.styles.scss';
 
 const BurgerBtn = ({ selectIsSideBarActive, setSideBarIsActive }) => {
-  const [ isActive, setIsActive ] = useState(false);
 
   const handleClick = () => {
-    setIsActive(!isActive);
     const status = selectIsSideBarActive;
     setSideBarIsActive(!status);
   }
 
   return (
     <button 
-      className={`hamburger hamburger--elastic ${isActive ? "is-active" : ""}`} 
+      className={`hamburger hamburger--elastic ${selectIsSideBarActive ? "is-active" : ""}`} 
       type="button"
       onClick={handleClick}>
       <span className="hamburger-box">
