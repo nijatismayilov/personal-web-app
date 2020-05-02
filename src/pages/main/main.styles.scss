@@ -3,6 +3,10 @@
 .main-component {
   width: 80%;
   position: relative;
+
+  &__routes-container {
+    height: 100%;
+  }
 }
 
 @media (max-width: 768px) {

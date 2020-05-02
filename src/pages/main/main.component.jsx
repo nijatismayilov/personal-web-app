@@ -20,7 +20,7 @@ const Main = ({ isAdmin }) => {
   return (
     <div className="main-component">
       <BurgerBtn />
-      <div>
+      <div className="main-component__routes-container">
         <Route exact path="/" component={Home} />
         <Route path="/about" component={About} />
         <Route path="/sites" component={SitesAndNewspapers} />
