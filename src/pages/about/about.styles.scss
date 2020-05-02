@@ -1,0 +1,11 @@
+@import '../../styles/main.scss';
+
+.about {
+    position: relative;
+
+    &__area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}

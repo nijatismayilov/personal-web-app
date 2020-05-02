@@ -7,6 +7,8 @@ import { fetchTelevisionItemsStart } from '../../redux/television/television.act
 
 import { deleteItemDocument } from '../../firebase/firebae.utils';
 
+import './admin-panel-item.styles.scss';
+
 class AdminPanelItem extends React.Component {
     handleDelete = async (collection, id) => {
         const { 

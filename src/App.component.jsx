@@ -15,17 +15,19 @@ import { fetchTelevisionItemsStart } from './redux/television/television.actions
 
 import WithSpinner from './components/with-spinner/with-spinner.component';
 
-import HomePage from './pages/homepage/homepage.component';
+import Main from './pages/main/main.component';
 import SideBar from './components/side-bar/side-bar.component';
 
-const AppBody = () => (
-  <div className="row">
-    <SideBar />
-    <HomePage />
-  </div>
-)
+const AppBody = () => {
+    return (
+        <div className="row">
+            <SideBar />
+            < Main / >
+        </div>
+    );
+};
 
-const AppWithSpinner = WithSpinner(AppBody)
+const AppWithSpinner = WithSpinner(AppBody);
 
 class App extends React.Component {
   state = {

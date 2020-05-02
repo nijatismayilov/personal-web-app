@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './interview-item.styles.scss';
+
 const InterviewItem = ({ title, website ,date }) => {
     return (
         <div className="interview-item">

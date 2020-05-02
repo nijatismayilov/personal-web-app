@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSpring, animated } from 'react-spring';
 
-const ScientificWork = () => {
+import './home.styles.scss';
+
+const Home = () => {
     const fade = useSpring({
         from: {
             opacity: 0,
@@ -16,9 +18,8 @@ const ScientificWork = () => {
     });
 
     return (
-        <animated.div className="scientific main" style={fade}>
-        </animated.div>
-    )
-}
+        <animated.div style={fade}>Home Page</animated.div>
+    );
+};
 
-export default ScientificWork;
+export default Home;

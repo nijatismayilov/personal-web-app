@@ -5,17 +5,20 @@ import { createStructuredSelector } from 'reselect';
 
 import { selectUserIsAdmin } from '../../redux/user/user.selectors';
 
-import About from '../../components/about/about.component';
-import SitesAndNewspapers from '../../components/sites-and-newspapers/sites-and-newspapers.component';
-import Television from '../../components/television/television.component';
-import ScientificWork from '../../components/scientific-work/scientific-work.component';
-import SignIn from '../../components/sign-in/sign-in.component';
-import AdminPanel from '../../components/admin-panel/admin-panel.component';
+import Home from '../home/home.component';
+import About from '../about/about.component';
+import SitesAndNewspapers from '../sites-and-newspapers/sites-and-newspapers.component';
+import Television from '../television/television.component';
+import ScientificWork from '../scientific-work/scientific-work.component';
+import SignIn from '../sign-in/sign-in.component';
+import AdminPanel from '../admin-panel/admin-panel.component';
 
-const HomePage = ({ isAdmin }) => {
+import './main.styles.scss';
+
+const Main = ({ isAdmin }) => {
     return (
-        <div className="homepage">
-            <Route exact path="/" component={About} />
+        <div className="main-component">
+            <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/sites" component={SitesAndNewspapers} />
             <Route path="/tv" component={Television} />
@@ -30,4 +33,4 @@ const mapStateToProps = createStructuredSelector({
     isAdmin: selectUserIsAdmin
 })
 
-export default connect(mapStateToProps)(HomePage);
+export default connect(mapStateToProps)(Main);

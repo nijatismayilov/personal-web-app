@@ -1,3 +1,5 @@
+@import '../../styles/main.scss';
+
 .about-item {
     display: flex;
     justify-content: space-between;
@@ -68,7 +70,7 @@
         transition: all 500ms;
     }
 
-    &__left:hover + &__right > &__content,
+    &__left:hover+&__right>&__content,
     &__right:hover>&__content {
         padding-left: 3rem;
     }

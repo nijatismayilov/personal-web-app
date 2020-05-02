@@ -7,6 +7,8 @@ import { selectCurrentUser, selectUserIsAdmin } from '../../redux/user/user.sele
 
 import profileImg from '../../assests/img/profile-img.png';
 
+import './side-bar.styles.scss';
+
 const SideBar = ({ currentUser, isAdmin }) => {
     return (
         <div className="side-bar">
@@ -32,16 +34,6 @@ const SideBar = ({ currentUser, isAdmin }) => {
                 <Link to="/scientific" className="side-bar__link">
                     elmi fəaliyyətim
                 </Link>
-                {/* {
-                    currentUser
-                        ? (
-                            <div className="side-bar__link" onClick={() => auth.signOut()}>
-                                Çıxış
-                            </div>
-                        )
-                        : (<Link to="/signin" className="side-bar__link">Giriş</Link>)
-                } */}
-
                 {
                     isAdmin
                         ? (<Link to="/admin" className="side-bar__link">Admin</Link>)
