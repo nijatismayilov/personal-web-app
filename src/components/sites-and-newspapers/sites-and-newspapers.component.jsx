@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSpring, animated } from 'react-spring';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -7,8 +8,21 @@ import { selectInterviewItems } from '../../redux/interviews/interviews.selector
 import InterviewItem from '../interview-item/interview-item.component';
 
 const SitesAndNewspapers = ({ interviews }) => {
+    const fade = useSpring({
+        from: {
+            opacity: 0,
+        },
+        opacity: 1,
+        config: {
+            mass: 2.3,
+            tension: 141,
+            friction: 34,
+            precision: 0.018
+        }
+    });
+
     return (
-      <div className="sites-and-newspapers main u-align-items-center">
+      <animated.div className="sites-and-newspapers main u-align-items-center" style={fade}>
         <h1 className="heading-primary">saytlarda və qəzetlərdə çıxışlarım</h1>
 
         <div className="sites-and-newspapers__content col-md-10">
@@ -22,7 +36,7 @@ const SitesAndNewspapers = ({ interviews }) => {
                 : null
           }
         </div>
-      </div>
+      </animated.div>
     );
 }
 

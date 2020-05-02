@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSpring, animated } from 'react-spring';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
@@ -9,8 +10,21 @@ import WithSpinner from '../with-spinner/with-spinner.component';
 import AboutItem from '../about-item/about-item.component';
 
 const AboutBody = ({ abouts }) => {
+    const fade = useSpring({
+        from: {
+            opacity: 0,
+        },
+        opacity: 1,
+        config: {
+            mass: 2.3,
+            tension: 141,
+            friction: 34,
+            precision: 0.018
+        }
+    });
+
     return (
-        <div className="about__area">
+        <animated.div className="about__area" style={fade}>
             <h1 className="heading-primary">haqqımda</h1>
 
             <main className="about__content col-md-10">
@@ -24,7 +38,7 @@ const AboutBody = ({ abouts }) => {
                         : null
                 }
             </main>
-        </div>
+        </animated.div>
     );
 };
 

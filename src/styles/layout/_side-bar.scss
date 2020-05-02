@@ -50,6 +50,7 @@
         padding: .5rem 0;
         cursor: pointer;
         position: relative;
+        transition: all 400ms ease-in;
 
         &::after {
             content: '';
