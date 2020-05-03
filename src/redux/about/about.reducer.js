@@ -1,7 +1,7 @@
 import { AboutActionTypes } from './about.types';
 
 const INITIAL_STATE = {
-  abouts: null,
+  abouts: [],
   isFetching: false,
   errorMessage: undefined
 }

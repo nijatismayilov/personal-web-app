@@ -9,7 +9,6 @@ import {
 } from './firebase/firebae.utils';
 
 import { setCurrentUser } from './redux/user/user.actions';
-import { fetchAboutsStart } from './redux/about/about.actions';
 import { fetchInterviewsStart } from './redux/interviews/interviews.actions';
 import { fetchTelevisionItemsStart } from './redux/television/television.actions';
 import { setSideBarIsActive } from './redux/sidebar/sidebar.actions';
@@ -50,7 +49,6 @@ class App extends React.Component {
     const {
       setSideBarIsActive,
       setCurrentUser,
-      fetchAboutsStart,
       fetchInterviewsStart,
       fetchTelevisionItemsStart
     } = this.props;
@@ -80,7 +78,7 @@ class App extends React.Component {
       setSideBarIsActive(status);
     })
 
-    fetchAboutsStart();
+    
     fetchInterviewsStart();
     fetchTelevisionItemsStart();      
   }
@@ -101,7 +99,6 @@ class App extends React.Component {
 
 const mapDispathToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
-  fetchAboutsStart: () => dispatch(fetchAboutsStart()),
   fetchInterviewsStart: () => dispatch(fetchInterviewsStart()),
   fetchTelevisionItemsStart: () => dispatch(fetchTelevisionItemsStart()),
   setSideBarIsActive: status => dispatch(setSideBarIsActive(status))

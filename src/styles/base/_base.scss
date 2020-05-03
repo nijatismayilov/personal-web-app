@@ -1,32 +1,32 @@
 *,
 *::after,
 *::before {
-    padding: 0;
-    margin: 0;
-    box-sizing: inherit;
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
 }
 
 html {
-    font-size: 62.5%;
+  font-size: 62.5%;
 }
 
 body {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .app {
-    display: flex;
-    min-height: 100vh;
+  display: flex;
+  min-height: 100vh;
 
-    .row {
-        position: relative;
-    }
+  .row {
+    position: relative;
+  }
 }
 
 .main {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding-top: 5rem;
-    background-color: $color-white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10rem;
+  background-color: $color-white;
 }

@@ -79,19 +79,20 @@ export const convertInterviewsSnaphot = (snapShot) => {
 }
 
 export const convertTelevisionSnapshot = (snapShot) => {
-    const transformedTelevisionCollection = snapShot.docs.map(doc => {
-        const { text, title, url } = doc.data();
-        const { id } = doc;
+  const transformedTelevisionCollection = snapShot.docs.map(doc => {
+    const { text, title, url, date } = doc.data();
+    const { id } = doc;
 
-        return {
-            id,
-            text,
-            title,
-            url
-        };
-    });
+    return {
+      id,
+      text,
+      title,
+      url,
+      date
+    };
+  });
 
-    return transformedTelevisionCollection;
+  return transformedTelevisionCollection;
 }
 
 export const createItemDocument = async (collection, item) => {
