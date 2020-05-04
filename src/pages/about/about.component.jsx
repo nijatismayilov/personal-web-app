@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { fetchAboutsStart } from '../../redux/about/about.actions';
 
-import { selectAboutItemsDescending, selectAboutIsFetching } from '../../redux/about/about.selectors';
+import { selectIsAboutsEmpty, selectAboutItemsDescending, selectAboutIsFetching } from '../../redux/about/about.selectors';
 
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 import AboutItem from '../../components/about-item/about-item.component';
@@ -49,8 +49,8 @@ const AboutWithSpinner = WithSpinner(AboutBody);
 
 class About extends React.Component {
   componentDidMount() {
-    const { abouts, fetchAboutsStart } = this.props;
-    if (abouts.length === 0) fetchAboutsStart();
+    const { isAboutsEmpty, fetchAboutsStart } = this.props;
+    if (isAboutsEmpty) fetchAboutsStart();
   }
 
   render() {
@@ -65,6 +65,7 @@ class About extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
+  isAboutsEmpty: selectIsAboutsEmpty,
   abouts: selectAboutItemsDescending,
   isFething: selectAboutIsFetching
 });

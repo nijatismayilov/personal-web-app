@@ -9,7 +9,6 @@ import {
 } from './firebase/firebae.utils';
 
 import { setCurrentUser } from './redux/user/user.actions';
-import { fetchInterviewsStart } from './redux/interviews/interviews.actions';
 import { fetchTelevisionItemsStart } from './redux/television/television.actions';
 import { setSideBarIsActive } from './redux/sidebar/sidebar.actions';
 
@@ -19,12 +18,12 @@ import Main from './pages/main/main.component';
 import SideBar from './components/side-bar/side-bar.component';
 
 const AppBody = () => {
-    return (
-        <div className="row">
-            <SideBar />
-            < Main / >
-        </div>
-    );
+  return (
+    <div className="row">
+      <SideBar />
+      <Main />
+    </div>
+  );
 };
 
 const AppWithSpinner = WithSpinner(AppBody);
@@ -49,7 +48,6 @@ class App extends React.Component {
     const {
       setSideBarIsActive,
       setCurrentUser,
-      fetchInterviewsStart,
       fetchTelevisionItemsStart
     } = this.props;
 
@@ -79,7 +77,6 @@ class App extends React.Component {
     })
 
     
-    fetchInterviewsStart();
     fetchTelevisionItemsStart();      
   }
 
@@ -95,13 +92,12 @@ class App extends React.Component {
       </div>
     );
   }
-}
+};
 
 const mapDispathToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
-  fetchInterviewsStart: () => dispatch(fetchInterviewsStart()),
   fetchTelevisionItemsStart: () => dispatch(fetchTelevisionItemsStart()),
   setSideBarIsActive: status => dispatch(setSideBarIsActive(status))
-})
+});
 
 export default connect(null, mapDispathToProps)(App);

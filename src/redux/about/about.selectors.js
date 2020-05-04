@@ -2,6 +2,11 @@ import { createSelector } from 'reselect';
 
 const selectAbout = state => state.about;
 
+export const selectIsAboutsEmpty = createSelector(
+  [selectAbout],
+  about => about.abouts.length === 0 
+);
+
 export const selectAboutItems = createSelector(
     [selectAbout],
     about => about.abouts

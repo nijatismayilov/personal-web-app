@@ -1,7 +1,7 @@
 import { InterviewsActionTypes } from './interviews.types';
 
 const INITIAL_STATE = {
-    interviews: null,
+    interviews: [],
     isFetching: false,
     errorMessage: undefined
 }
