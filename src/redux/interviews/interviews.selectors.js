@@ -12,6 +12,18 @@ export const selectInterviewItems = createSelector(
   interviews => interviews.interviews
 );
 
+export const selectInterviewItemsDescending = createSelector(
+  [selectInterviewItems],
+  interviews => {
+    if (!interviews) return interviews;
+    else {
+      return (interviews.sort((interview1, interview2) => {
+        return Date.parse(interview1.date) <= Date.parse(interview2.date) ? 1 : -1;
+      }));
+    }
+  }
+);
+
 export const selectInterviewsIsFetching = createSelector(
   [selectInterviews],
   interviews => interviews.isFetching

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -28,6 +28,15 @@ const SideBar = ({ isSideBarActive, isAdmin }) => {
     transform: isSideBarActive ? "translateX(0)" : "translateX(-100%)"
   });
 
+  // useEffect(() => {
+  //   const active = sessionStorage.getItem('active-page');
+  //   if (activePage) setActivePage(JSON.parse(active));
+  // }, [activePage]);
+
+  // useEffect(() => {
+  //   sessionStorage.setItem('active-page', JSON.stringify(activePage));
+  // });
+  
   return (
     <animated.div className="side-bar" style={fadeInFromRight}>
       <div className="side-bar__top">

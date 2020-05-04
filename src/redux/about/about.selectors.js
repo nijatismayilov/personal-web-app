@@ -18,7 +18,7 @@ export const selectAboutItemsDescending = createSelector(
     return (
       abouts
         ? abouts.sort((about1, about2) => Date.parse(about1.date) <= Date.parse(about2.date) ? 1 : -1)
-        : null
+        : []
     )
   }
 )

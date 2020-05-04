@@ -28,7 +28,7 @@ const AboutBody = ({ abouts }) => {
 
   return (
     <animated.div className="about__area" style={fade}>
-      <h1 className="heading-primary">haqqımda</h1>
+      <h1 className="heading-primary col-md-10">haqqımda</h1>
 
       <main className="about__content col-md-10">
         {

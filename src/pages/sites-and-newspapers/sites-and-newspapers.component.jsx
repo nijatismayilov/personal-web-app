@@ -5,7 +5,7 @@ import { createStructuredSelector } from 'reselect';
 
 import { fetchInterviewsStart } from '../../redux/interviews/interviews.actions';
 
-import { selectIsInterviewsEmpty, selectInterviewsIsFetching, selectInterviewItems } from '../../redux/interviews/interviews.selectors';
+import { selectIsInterviewsEmpty, selectInterviewsIsFetching, selectInterviewItemsDescending } from '../../redux/interviews/interviews.selectors';
 
 import WithSpinner from '../../components/with-spinner/with-spinner.component';
 import InterviewItem from '../../components/interview-item/interview-item.component';
@@ -28,7 +28,7 @@ const SitesAndNewspapersBody = ({ interviews }) => {
 
   return (
     <animated.div className="sites-and-newspapers main u-align-items-center" style={fade}>
-      <h1 className="heading-primary">saytlarda və qəzetlərdə çıxışlarım</h1>
+      <h1 className="heading-primary col-md-10">saytlarda və qəzetlərdə çıxışlarım</h1>
 
       <div className="sites-and-newspapers__content col-md-10">
         {
@@ -67,7 +67,7 @@ class SitesAndNewspapers extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   isEmpty: selectIsInterviewsEmpty,
-  interviews: selectInterviewItems,
+  interviews: selectInterviewItemsDescending,
   isFetching: selectInterviewsIsFetching
 });
 

@@ -1,87 +1,62 @@
 @import '../../styles/main.scss';
 
 .interview-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: .5rem;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  border-radius: 1rem;
+  transition: all 300ms;
+  position: relative;
+  font-family: $font;
+  font-weight: 400;
+
+  span {
+    width: 2.5%;
+    background-color: $color-about-item-left;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+  }
+
+  &__content {
+    width: 97.5%;
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: $color-black;
+    padding: 1.5rem 2.5rem;
+
+    background-color: $color-white;
+    border: .1rem solid rgba($color-text-dark, .1);
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    transition: all 500ms;
+  }
+
+  &__title {
     margin-bottom: 1.5rem;
-    border: .1rem solid rgba($color-text-dark, .25);
+  }
 
-    &__left {
-        width: 15%;
-        height: 4rem;
-        position: relative;
-        cursor: pointer;
+  &__website {
+    font-size: 1.75rem;
+    color: rgba($color-text-dark, .75);
+  }
 
-        span {
-            position: absolute;
-            top: 50%;
-            right: 0%;
-            transform: translate(50%, -50%);
-            width: 2rem;
-            height: 2rem;
-            border-radius: 100%;
-            border: .3rem solid $color-white;
-            background-color: $color-link-dark;
-        }
-    }
+  &__date {
+    position: absolute;
+    bottom: .5rem;
+    right: 2.5rem;
+    font-size: 1.7rem;
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    text-decoration: underline;
+    color: rgba($color-black, .75);
+  }
 
-    &__date {
-        width: 100%;
-        height: 100%;
-        border-radius: .2rem;
-        background-color: $color-link-light;
-        font-family: $font;
-        font-size: 2rem;
-        font-weight: 500;
-        color: $color-white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    &__right {
-        display: flex;
-        align-items: stretch;
-        width: 83.5%;
-        border-radius: .3rem;
-        border-bottom-right-radius: 0;
-        overflow: hidden;
-        cursor: pointer;
-
-        span {
-            width: 2.5%;
-            background-color: $color-link-light;
-        }
-    }
-
-    &__content {
-        width: 97.5%;
-        text-align: left;
-        font-family: $font;
-        font-size: 1.5rem;
-        font-weight: 400;
-        color: $color-white;
-        padding: 1.5rem 2.5rem;
-
-        background-color: $color-bg-light;
-        transition: all 500ms;
-    }
-
-    &__title {
-        margin-bottom: 1.5rem;
-    }
-
-    &__website {
-        font-family: $font;
-        font-size: 1.75rem;
-        color: $color-white;
-    }
-
-    &__left:hover+&__right>&__content,
-    &__right:hover>&__content {
-        padding-left: 3rem;
-    }
+  &:hover {
+    backface-visibility: hidden;
+    transform: translateY(-.1rem);
+    box-shadow: 0 .5rem 1rem rgba($color-black, .1);
+  }
 }

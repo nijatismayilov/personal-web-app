@@ -62,14 +62,13 @@ export const convertInterviewsSnaphot = (snapShot) => {
     const { title, date, website } = doc.data();
     const { id } = doc;
 
-    const dateNew = date.split('-')[0];
     const websiteNew = website.split('/')[2];
 
     return {
       id,
       title,
       website: websiteNew,
-      date: dateNew
+      date
     };
   });
 
