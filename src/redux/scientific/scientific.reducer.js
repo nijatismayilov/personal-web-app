@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    scientific: null,
+    scientific: [],
     isFething: false,
     errorMessage: undefined
 }

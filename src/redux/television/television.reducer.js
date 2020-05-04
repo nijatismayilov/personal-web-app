@@ -1,7 +1,7 @@
 import { TelevisionActionTypes } from './television.types';
 
 const INITIAL_STATE = {
-    television: null,
+    television: [],
     isFething: false,
     errorMessage: undefined
 }
