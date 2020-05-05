@@ -3,13 +3,15 @@ import { useSpring, animated } from 'react-spring';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 
-import { selectTelevisionApperances } from '../../redux/television/television.selectors';
+import { fetchTelevisionItemsStart } from '../../redux/television/television.actions';
+import { selectTelevisionApperances, selectIsTelevisionEmpty, selectIsFetching } from '../../redux/television/television.selectors';
 
+import WithSpinner from '../../components/with-spinner/with-spinner.component';
 import TvItem from '../../components/tv-item/tv-item.component';
 
 import './television.styles.scss';
 
-const Television = ({ tvApperances }) => {
+const TelevisionBody = ({ tvApperances }) => {
   const fade = useSpring({
     from: {
       opacity: 0,
@@ -34,10 +36,36 @@ const Television = ({ tvApperances }) => {
       </main>
     </animated.section>
   );
+};
+
+const TelevisionWithSpinner = WithSpinner(TelevisionBody);
+
+class Television extends React.Component {
+  componentDidMount() {
+    const { isEmpty, fetchTelevisionItemsStart } = this.props;
+
+    if (isEmpty) fetchTelevisionItemsStart();
+  }
+
+  render() {
+    const { isLoading, tvApperances } = this.props;
+
+    return (
+      <section>
+        <TelevisionWithSpinner isLoading={isLoading} tvApperances={tvApperances} />
+      </section>
+    )
+  }
 }
 
 const mapStateToProps = createStructuredSelector({
-  tvApperances: selectTelevisionApperances
-})
+  tvApperances: selectTelevisionApperances,
+  isEmpty: selectIsTelevisionEmpty,
+  isLoading: selectIsFetching
+});
 
-export default connect(mapStateToProps)(Television);
+const mapDispatchToProps = dispatch => ({
+  fetchTelevisionItemsStart: () => dispatch(fetchTelevisionItemsStart())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Television);

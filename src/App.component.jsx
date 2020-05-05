@@ -3,13 +3,9 @@ import { connect } from 'react-redux';
 
 import './styles/main.scss';
 
-import {
-  auth,
-  createUserProfileDocument
-} from './firebase/firebae.utils';
+import { auth, createUserProfileDocument } from './firebase/firebae.utils';
 
 import { setCurrentUser } from './redux/user/user.actions';
-import { fetchTelevisionItemsStart } from './redux/television/television.actions';
 import { setSideBarIsActive } from './redux/sidebar/sidebar.actions';
 
 import WithSpinner from './components/with-spinner/with-spinner.component';
@@ -45,11 +41,7 @@ class App extends React.Component {
   componentDidMount() {
     this.checkScreenWidth();
 
-    const {
-      setSideBarIsActive,
-      setCurrentUser,
-      fetchTelevisionItemsStart
-    } = this.props;
+    const { setSideBarIsActive, setCurrentUser } = this.props;
 
     this.unsbscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
@@ -74,10 +66,7 @@ class App extends React.Component {
       else status = true;
 
       setSideBarIsActive(status);
-    })
-
-    
-    fetchTelevisionItemsStart();      
+    })    
   }
 
   componentWillUnmount() {
@@ -96,7 +85,6 @@ class App extends React.Component {
 
 const mapDispathToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user)),
-  fetchTelevisionItemsStart: () => dispatch(fetchTelevisionItemsStart()),
   setSideBarIsActive: status => dispatch(setSideBarIsActive(status))
 });
 
