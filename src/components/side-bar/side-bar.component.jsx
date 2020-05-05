@@ -18,24 +18,24 @@ const pages = [
   { text: "televiziyada çıxışlarım", link: '/tv', id: 3 },
   { text: "elmi fəaliyyətim", link: '/scientific', id: 4 },
   { text: "admin", link: '/admin', id: 5 }
-]
+];
 
 
 const SideBar = ({ isSideBarActive, isAdmin }) => {
-  const [ activePage, setActivePage ] = useState(0)
+  const [ activePage, setActivePage ] = useState(0);
   const fadeInFromRight = useSpring({
     opacity: isSideBarActive ? 1 : 0,
     transform: isSideBarActive ? "translateX(0)" : "translateX(-100%)"
   });
 
-  // useEffect(() => {
-  //   const active = sessionStorage.getItem('active-page');
-  //   if (activePage) setActivePage(JSON.parse(active));
-  // }, [activePage]);
+  useEffect(() => {
+    const active = sessionStorage.getItem('active-page');
+    if (active) setActivePage(JSON.parse(active));
+  }, []);
 
-  // useEffect(() => {
-  //   sessionStorage.setItem('active-page', JSON.stringify(activePage));
-  // });
+  useEffect(() => {
+    sessionStorage.setItem('active-page', JSON.stringify(activePage));
+  }, [activePage]);
   
   return (
     <animated.div className="side-bar" style={fadeInFromRight}>
