@@ -40,7 +40,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
   }
 
   return userRef;
-}
+};
 
 export const convertAboutsSnaphot = (snapShot) => {
   const transformedAboutsCollection = snapShot.docs.map(doc => {
@@ -55,7 +55,7 @@ export const convertAboutsSnaphot = (snapShot) => {
   });
 
   return transformedAboutsCollection;
-}
+};
 
 export const convertInterviewsSnaphot = (snapShot) => {
   const transformedInterviewsCollection = snapShot.docs.map(doc => {
@@ -73,7 +73,7 @@ export const convertInterviewsSnaphot = (snapShot) => {
   });
 
   return transformedInterviewsCollection;
-}
+};
 
 export const convertTelevisionSnapshot = (snapShot) => {
   const transformedTelevisionCollection = snapShot.docs.map(doc => {
@@ -90,19 +90,39 @@ export const convertTelevisionSnapshot = (snapShot) => {
   });
 
   return transformedTelevisionCollection;
-}
+};
+
+export const convertScientificSnapshot = (snapShot) => {
+  const transformedScientificCollection = snapShot.docs.map(doc => {
+    const {
+      title,
+      date
+    } = doc.data();
+    const {
+      id
+    } = doc;
+
+    return {
+      id,
+      title,
+      date
+    };
+  });
+
+  return transformedScientificCollection;
+};
 
 export const createItemDocument = async (collection, item) => {
   const collectionRef = firestore.collection(collection);
   const newDocRef = collectionRef.doc();
   return await newDocRef.set(item);
-}
+};
 
 export const deleteItemDocument = async (collection, id) => {
   const collectionRef = firestore.collection(collection);
   const docRef = collectionRef.doc(id);
 
   return await docRef.delete();
-}
+};
 
 export default firebase;

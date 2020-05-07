@@ -8,12 +8,12 @@ import scientificReducer from './scientific/scientific.reducer';
 import sideBarReducer from './sidebar/sidebar.reducer';
 
 const rootReducer = combineReducers({
-    user: userReducer,
-    about: aboutReducer,
-    interviews: interviewsReducer,
-    television: televisionReducer,
-    scientific: scientificReducer,
-    sideBar: sideBarReducer
+  user: userReducer,
+  about: aboutReducer,
+  interviews: interviewsReducer,
+  television: televisionReducer,
+  scientific: scientificReducer,
+  sideBar: sideBarReducer
 });
 
 export default rootReducer;
